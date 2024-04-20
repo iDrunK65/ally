@@ -136,8 +136,9 @@ export class DiscordDriver extends Oauth2Driver<DiscordToken, DiscordScopes> {
     const body = await request.get()
     return {
       id: body.id,
-      name: `${body.username}#${body.discriminator}`,
-      nickName: body.username,
+      oldName: `${body.username}#${body.discriminator}`,
+      name: body.username,
+      nickName: body.global_name,
       avatarUrl: body.avatar
         ? `https://cdn.discordapp.com/avatars/${body.id}/${body.avatar}.${
             body.avatar.startsWith('a_') ? 'gif' : 'png'
